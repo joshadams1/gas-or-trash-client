@@ -5,18 +5,21 @@ import InputLabel from '@mui/material/InputLabel';
 
 
 const DropDown = (props) => {
-    const [team1, setTeam1] = useState('');
-    const [team2, setTeam2] = useState('');
     const {teams} = props;
 
-    
+    const handleChange = (event) => {
+        props.setTeam(event.target.value);
+    };
+
     return (
         <div>
-            <InputLabel>Team</InputLabel>
-            <Select>
+            <InputLabel>Team {props.teamNumber}</InputLabel>
+            <Select
+                onChange={handleChange}
+            >
                 {
                     teams&&teams.map(team => (
-                        <MenuItem>{team}</MenuItem>
+                        <MenuItem value={team}>{team}</MenuItem>
                     ))
                 }
             </Select>

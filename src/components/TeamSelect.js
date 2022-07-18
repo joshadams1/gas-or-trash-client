@@ -2,15 +2,17 @@ import {useState, useEffect} from 'react';
 import Grid from '@mui/material/Grid';
 
 import DropDown from './DropDown';
+import Submit from './Submit';
 import {getTeams} from '../services/get';
 
-const TeamSelect = () => {
+const TeamSelect = (props) => {
     const [teams, setTeams] = useState([]);
+    const [team1, setTeam1] = useState('');
+    const [team2, setTeam2] = useState('');
 
     useEffect(() => {
         async function retrieveTeams() {
             const response = await getTeams();
-            console.log('fired', response);
             setTeams(response.data.teams);
         }
         retrieveTeams();
@@ -18,16 +20,32 @@ const TeamSelect = () => {
 
     return (
         <div>
-            <Grid container 
-                direction="row" 
+            <Grid container
+                direction="column" 
                 justifyContent="center"
                 spacing={12}
             >
                 <Grid item>
-                    <DropDown teams={teams}/>
+                    <Grid container 
+                        justifyContent="center"
+                        spacing={8}
+                    >
+                        <Grid item>
+                            <DropDown teams={teams} teamNumber={1} setTeam={setTeam1}/>
+                        </Grid>
+                        <Grid item>
+                            <DropDown teams={teams} teamNumber={2} setTeam={setTeam2}/>
+                        </Grid>
+                    </Grid>
                 </Grid>
                 <Grid item>
-                    <DropDown teams={teams}/>
+                    <Grid container
+                        justifyContent="center"
+                    >
+                        <Grid item>
+                            <Submit team1={team1} team2={team2} setSubmitted={props.submitted}/>
+                        </Grid>
+                    </Grid>
                 </Grid>
             </Grid>
         </div>
