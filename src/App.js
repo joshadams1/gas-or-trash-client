@@ -11,6 +11,8 @@ function App() {
   const [polls, setPolls] = useState([]);
   const [isSubmitted, setSubmitted] = useState(false);
 
+  const hasVoted = window.sessionStorage.getItem("voted") === 'true' ? true : false;
+
   useEffect(() => {
     async function retrievePolls() {
         const response = await getPolls();
@@ -23,19 +25,19 @@ function App() {
   return (
     <div className="App">
       <h1 style={{fontSize: '100px'}}>Gas or Trash</h1>
-      {!isSubmitted && <TeamSelect submitted={setSubmitted}/>}
+      {!isSubmitted && !hasVoted ? <TeamSelect submitted={setSubmitted}/> : ''}
       <Grid container
         direction="row" 
         justifyContent="center"
         spacing={12}
       >
         <Grid item>
-          {isSubmitted && <TeamVote teamName={polls[0].label}/>}
-          {isSubmitted && <ProgressBar percentage={polls[0].percentage} />}
+          {isSubmitted && !hasVoted ? <TeamVote teamName={polls[0].label} /> : ''}
+          {isSubmitted && hasVoted ? <ProgressBar percentage={polls[0].percentage} teamName={polls[0].label}/> : ''}
         </Grid>
         <Grid item>
-          {isSubmitted && <TeamVote teamName={polls[1].label}/>}
-          {isSubmitted && <ProgressBar percentage={polls[1].percentage} />}
+          {isSubmitted && !hasVoted ? <TeamVote teamName={polls[1].label} /> : ''}
+          {isSubmitted && hasVoted ? <ProgressBar percentage={polls[1].percentage} teamName={polls[1].label}/> : '' }
         </Grid>
       </Grid>
     </div>

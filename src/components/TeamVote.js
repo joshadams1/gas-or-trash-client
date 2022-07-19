@@ -6,13 +6,14 @@ const TeamVote = (props) => {
     const handleClick = () => {
         addVote(props.teamName);
         window.location.reload(false);
+        window.sessionStorage.setItem("voted", true);
     }
 
     return(
         <div>
             <h3>{props.teamName}</h3>
             <p>{props.percentage}</p>
-            <Button onClick={handleClick} variant="contained">Submit Teams For Voting</Button>
+            <Button onClick={handleClick} variant="contained">Vote</Button>
         </div>
     )
 }

@@ -31,10 +31,10 @@ const TeamSelect = (props) => {
                         spacing={8}
                     >
                         <Grid item>
-                            <DropDown teams={teams} teamNumber={1} setTeam={setTeam1}/>
+                            <DropDown teams={teams} teamNumber={1} setTeam={setTeam1} />
                         </Grid>
                         <Grid item>
-                            <DropDown teams={teams} teamNumber={2} setTeam={setTeam2}/>
+                            <DropDown teams={teams} teamNumber={2} setTeam={setTeam2} />
                         </Grid>
                     </Grid>
                 </Grid>

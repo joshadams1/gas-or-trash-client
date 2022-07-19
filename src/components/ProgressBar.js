@@ -1,24 +1,27 @@
-import LinearProgress, { LinearProgressProps } from '@mui/material/LinearProgress';
-import Typography from '@mui/material/Typography';
-import Box from '@mui/material/Box';
-
-const LinearProgressWithLabel = (props) => {
-    return (
-      <Box sx={{ display: 'flex', alignItems: 'center' }}>
-        <Box sx={{ width: '100%', mr: 1 }}>
-          <LinearProgress variant="determinate" {...props} />
-        </Box>
-        <Box sx={{ minWidth: 35 }}>
-          <Typography variant="body2" color="text.secondary">{`${Math.round(
-            props.value,
-          )}%`}</Typography>
-        </Box>
-      </Box>
-    );
-  }
+import { useState } from "react";
 
 const ProgressBar = (props) => {
-    return (<LinearProgressWithLabel value={props.percentage} />);
+	const [style, setStyle] = useState({});
+	
+	setTimeout(() => {
+		const newStyle = {
+			opacity: 1,
+			width: `${props.percentage}%`
+		}
+		
+		setStyle(newStyle);
+	}, 200);
+	
+	return (
+		<div>
+      <h2>{props.teamName}</h2>
+      <div className="progress">
+        <div className="progress-done" style={style}>
+          {props.percentage > 0 ? <p>{props.percentage}%</p> : ''}
+        </div>
+		  </div>
+    </div>
+	)
 }
 
 export default ProgressBar;
