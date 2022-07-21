@@ -21,8 +21,6 @@ const TeamSelect = (props) => {
 
     return (
         <div>
-            <img style={{width: '200px', height: '200px'}} src={images[team1.replaceAll(' ', '')]} />
-            <img style={{width: '200px', height: '200px'}} src={images[team2.replaceAll(' ', '')]} />
             <Grid container
                 direction="column" 
                 justifyContent="center"
@@ -31,12 +29,15 @@ const TeamSelect = (props) => {
                 <Grid item>
                     <Grid container 
                         justifyContent="center"
-                        spacing={8}
+                        direction="row"
+                        spacing={12}
                     >
                         <Grid item>
+                            {team1?.length && team2.length ? <img style={{width: '200px', height: '200px', outline: 'none !important', marginBottom: '50px'}} src={images[team1.replaceAll(' ', '')]} /> : ''}
                             <DropDown teams={teams} teamNumber={1} setTeam={setTeam1}/>
                         </Grid>
                         <Grid item>
+                            {team2.length && team2.length ? <img style={{width: '200px', height: '200px', outline: 'none !important', marginBottom: '50px'}} src={images[team2.replaceAll(' ', '')]} /> : ''}
                             <DropDown teams={teams} teamNumber={2} setTeam={setTeam2}/>
                         </Grid>
                     </Grid>
