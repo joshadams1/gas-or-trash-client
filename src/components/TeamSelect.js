@@ -4,6 +4,7 @@ import Grid from '@mui/material/Grid';
 import DropDown from './DropDown';
 import Submit from './Submit';
 import {getTeams} from '../services/get';
+import images from '../assets/images';
 
 const TeamSelect = (props) => {
     const [teams, setTeams] = useState([]);
@@ -20,6 +21,8 @@ const TeamSelect = (props) => {
 
     return (
         <div>
+            <img style={{width: '200px', height: '200px'}} src={images[team1.replaceAll(' ', '')]} />
+            <img style={{width: '200px', height: '200px'}} src={images[team2.replaceAll(' ', '')]} />
             <Grid container
                 direction="column" 
                 justifyContent="center"
@@ -31,10 +34,10 @@ const TeamSelect = (props) => {
                         spacing={8}
                     >
                         <Grid item>
-                            <DropDown teams={teams} teamNumber={1} setTeam={setTeam1} />
+                            <DropDown teams={teams} teamNumber={1} setTeam={setTeam1}/>
                         </Grid>
                         <Grid item>
-                            <DropDown teams={teams} teamNumber={2} setTeam={setTeam2} />
+                            <DropDown teams={teams} teamNumber={2} setTeam={setTeam2}/>
                         </Grid>
                     </Grid>
                 </Grid>

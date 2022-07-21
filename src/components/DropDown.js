@@ -8,6 +8,9 @@ const DropDown = (props) => {
     const {teams} = props;
 
     const handleChange = (event) => {
+        // const value = `${event.target.value}`;
+        // console.log(value)
+        // props.setTeam(value.replace(' ', ''));
         props.setTeam(event.target.value);
     };
 

@@ -5,6 +5,7 @@ import './App.css';
 import TeamSelect from './components/TeamSelect';
 import TeamVote from './components/TeamVote';
 import ProgressBar from './components/ProgressBar';
+import images from './assets/images';
 import {getPolls} from './services/get';
 
 function App() {
@@ -25,14 +26,16 @@ function App() {
   return (
     <div className="App">
       <h1 style={{fontSize: '100px'}}>Gas or Trash</h1>
-      {!isSubmitted && !hasVoted ? <TeamSelect submitted={setSubmitted}/> : ''}
+      <img style={{width: '200px', height: '200px'}} src={images[ polls[0]?.label.replaceAll(' ', '')]} />
+      <img style={{width: '200px', height: '200px'}} src={images[polls[1]?.label.replaceAll(' ', '')]} />
+      {!isSubmitted && !hasVoted ? <TeamSelect submitted={setSubmitted} /> : ''}
       <Grid container
         direction="row" 
         justifyContent="center"
         spacing={12}
       >
         <Grid item>
-          {isSubmitted && !hasVoted ? <TeamVote teamName={polls[0].label} /> : ''}
+          {isSubmitted && !hasVoted ? <TeamVote teamName={polls[0].label}  /> : ''}
           {isSubmitted && hasVoted ? <ProgressBar percentage={polls[0].percentage} teamName={polls[0].label}/> : ''}
         </Grid>
         <Grid item>
