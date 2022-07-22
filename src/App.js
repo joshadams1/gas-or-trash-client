@@ -4,6 +4,7 @@ import Grid from '@mui/material/Grid';
 import './App.css';
 import TeamSelect from './components/TeamSelect';
 import TeamVote from './components/TeamVote';
+import Reset from './components/Reset';
 import Emoji from './components/Emoji';
 import ProgressBar from './components/ProgressBar';
 import images from './assets/images';
@@ -14,6 +15,7 @@ function App() {
   const [isSubmitted, setSubmitted] = useState(false);
 
   const hasVoted = window.sessionStorage.getItem("voted") === 'true' ? true : false;
+  const isOriginator = window.sessionStorage.getItem("originator") === 'true' ? true : false;
 
   useEffect(() => {
     async function retrievePolls() {
@@ -23,6 +25,8 @@ function App() {
     }
     retrievePolls();
   }, []);
+
+  console.log(typeof window.sessionStorage.getItem("voted"));
 
   return (
     <div className="App">
@@ -46,6 +50,7 @@ function App() {
           {isSubmitted && hasVoted && polls[0]?.percentage !== "50" && polls[1]?.percentage !== "50" ? <Emoji symbol={polls[1]?.percentage > polls[0]?.percentage ? "🔥" : "🗑"}/> : ''}
         </Grid>
       </Grid>
+      {isOriginator && isSubmitted ? <div style={{marginTop: '50px'}}><Reset /></div> : ''}
     </div>
   );
 }

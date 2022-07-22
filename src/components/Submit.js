@@ -7,6 +7,7 @@ const Submit = (props) => {
         setTeams(props.team1, props.team2);
         props.setSubmitted(true);
         window.location.reload(false);
+        window.sessionStorage.setItem("originator", true);
     }
 
     return (
